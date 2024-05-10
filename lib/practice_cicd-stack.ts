@@ -5,6 +5,7 @@ import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import {
   RemovalPolicy,
   aws_s3 as S3,
+  aws_glue as glue,
 } from 'aws-cdk-lib';
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 
@@ -12,12 +13,19 @@ export class PracticeCicdStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const bucket = new S3.Bucket(this, 'practicebucket', {
-      bucketName: 'practicebucket',
-      blockPublicAccess: S3.BlockPublicAccess.BLOCK_ALL,
-      publicReadAccess: false,
-      versioned: true,
-      removalPolicy: cdk.RemovalPolicy.DESTROY,
+    // const bucket = new S3.Bucket(this, 'practicebucket', {
+    //   bucketName: 'practicebucket',
+    //   blockPublicAccess: S3.BlockPublicAccess.BLOCK_ALL,
+    //   publicReadAccess: false,
+    //   versioned: true,
+    //   removalPolicy: cdk.RemovalPolicy.DESTROY,
+    // });
+
+    const glue_database = new glue.CfnDatabase(this, 'cicdpractice', {
+      catalogId: cdk.Aws.ACCOUNT_ID,
+      databaseInput: {
+        name: 'cicdpractice'
+      }
     });
 
     // const vpc = new ec2.Vpc(this, 'CICDVPC', {
