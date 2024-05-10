@@ -12,8 +12,8 @@ export class PracticeCicdStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const bucket = new S3.Bucket(this, 'cicdbucket', {
-      bucketName: 'cicdbucket',
+    const bucket = new S3.Bucket(this, 'practicebucket', {
+      bucketName: 'practicebucket',
       blockPublicAccess: S3.BlockPublicAccess.BLOCK_ALL,
       publicReadAccess: false,
       versioned: true,
