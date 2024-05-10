@@ -9,7 +9,7 @@ export class PracticeCicdStack extends cdk.Stack {
     super(scope, id, props);
 
     const vpc = new ec2.Vpc(this, 'CICDVPC', {
-      maxAzs: 3,
+      maxAzs: 2,
     });
 
     // const instance = new ec2.Instance(this, 'CICDInstance', {
